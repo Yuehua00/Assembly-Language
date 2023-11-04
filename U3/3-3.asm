@@ -1,3 +1,5 @@
+;Data Definitions
+
 ; Program Description : Write a program that contains a definition of each data type listed in Table 3-2 in Session 3.4. Initialize each variable to a value that is consisten with its data type.
 ; Author : Slider
 ; Creation Data : 2023/11/4
