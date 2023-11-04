@@ -1,3 +1,5 @@
+; Symbolic Integer Constants
+
 ; Program Description : Write a program that defines symbolic consyants for all seven days of week. Create an array variable that uses the symbols as initializers.
 ; Author : Slider
 ; Creation Date : 2023/11/3
