@@ -1,3 +1,5 @@
+; Symbolic Text Constants
+
 ; Program Description : Write a program that defines symbolic names for several string literals (characters between quotes). Use each symbolic name in a variable definition.
 ; Author : Slider
 ; Creation Date : 2023/11/4
