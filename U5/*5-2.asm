@@ -54,8 +54,6 @@ main PROC
         inc EDI
     LOOP L1
 
-	
-
 	INVOKE ExitProcess, 0
 main ENDP
 END main
