@@ -41,18 +41,18 @@ main PROC
 		mov [EDI], AL
 
 		; Move start to element in the links array
-        mov EAX, start
-        mul linktype
-		mov EDX, OFFSET link   ; If this do before "mov EAX, start mul linktype", EDX will be reseted to 000000, and occure error
-        mov start, EAX
-        add EDX, start
-
-		; Replace start      
-        mov EAX, [EDX]
-        mov start, EAX
-
-        inc EDI
-    LOOP L1
+	        mov EAX, start
+	        mul linktype
+			mov EDX, OFFSET link   ; If this do before "mov EAX, start mul linktype", EDX will be reseted to 000000, and occure error
+	        mov start, EAX
+	        add EDX, start
+	
+			; Replace start      
+	        mov EAX, [EDX]
+	        mov start, EAX
+	
+	        inc EDI
+	    LOOP L1
 
 	INVOKE ExitProcess, 0
 main ENDP
