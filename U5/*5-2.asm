@@ -47,12 +47,12 @@ main PROC
 	        mov start, EAX
 	        add EDX, start
 	
-			; Replace start      
+		; Replace start      
 	        mov EAX, [EDX]
 	        mov start, EAX
 	
 	        inc EDI
-	    LOOP L1
+	LOOP L1
 
 	INVOKE ExitProcess, 0
 main ENDP
