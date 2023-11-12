@@ -9,6 +9,7 @@
 ;                       links: 0    4    4    5    5    6    2    3    3    7    7    0
 ;                       Then the values copied (in order) to the output array would be A,B,C,D,E,F,G,H. 
 ;                       Declare the character array as type BYTE, and to make the problem more interesting, declare the links array type DWORD.
+; Reference Website : https://csprogrammingtutorial.blogspot.com/2018/01/program-linking-array-items-in-assembly.html  
 ; Author : Slider
 ; Creation Date : 2023/11/12
 ; Revisions :
