@@ -20,7 +20,7 @@ ExitProcess proto, dwExitCode:dword
 
 .code
 main proc 
-	mov ecx, 10
+	mov ecx, 10                                  ; total runtimes
 	call RecursiveProcedure
 
 	invoke ExitProcess, 0
@@ -35,7 +35,7 @@ main endp
 RecursiveProcedure proc
 	inc count
 	cmp count, ecx
-	jz quit
+	jz quit                                      ; count == ecx
 	call RecursiveProcedure
 
 	quit:
