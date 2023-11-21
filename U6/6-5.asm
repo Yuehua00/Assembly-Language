@@ -9,6 +9,7 @@
 ;                       When the user makes a choice, call a procedure that displays the name of the operation about to be performed. 
 ;                       You must implement this procedure using the Table-Driven Selection technique,
 ;                       shown in Section 6.5.4. (You will implement the operations in Exercise 6.) (The Irvine32 library is required for this solution program.)
+; Reference Website : https://github.com/rastone/Review/blob/master/Assembly/BooleanCalc.asm
 ; Author : Slider
 ; Creation Date : 2023/11/21
 ; Revisions :
@@ -20,71 +21,105 @@
 ExitProcess PROTO, dwExitCode:DWORD
 
 .data
-	string DWORD 'DNA', 'RO', 'TON', 'ROX'
-	tmp DWORD ?
-	time DWORD 4
+	num WORD '1', '2', '3', '4'
+	len DWORD LENGTHOF num
 	x DWORD 1
 	y DWORD 0
-
-	CaseTable BYTE 'AND'
-		DWORD Process_AND
-	EnterSize = ( $- CaseTable )
-		BYTE 'OR'
-		DWORD Process_OR
-		BYTE 'NOT'
-		DWORD Process_NOT
-		BYTE 'XOR'
-		DWORD Process_XOR
+	caseTable BYTE '1'			; lookup value
+		DWORD AND_op			; address of procedure
+	EntrySize = ($ - caseTable )
+		BYTE '2'
+		DWORD OR_op
+		BYTE '3'
+		DWORD NOT_op
+		BYTE '4'
+		DWORD XOR_op
+		BYTE '5'
+		DWORD ExitProgram
+	NumberOfEntries = ($ - caseTable) / EntrySize
 
 .code
 main PROC
-	mov ebx, OFFSET CaseTable
-	mov ecx, time
-	mov esi, OFFSET string
-	L1:
-		mov eax, [esi]
-		mov edx, [ebx]
-		cmp eax, edx
-		jne L2
-		call NEAR PTR [ebx + 1]
-		jmp L3
+	mov esi, OFFSET num
+	mov ecx, len
+	mov eax, 0
+	L1:	
+		mov al, [esi]
+		cmp al, '5'				; is selection valid (1-5)?
+		ja L2					; jump if above 5, go back
+		cmp al, '1'
+		jb L2					; jump if below 1, go back
+		jc quit				    ; jump if carry = 1, exit
+		call ChooseProcedure
+
 	L2:
-		add esi, TYPE string
-		add ebx, EnterSize
+		add esi, TYPE num
 	loop L1
 
-	L3:
-		
-    INVOKE ExitProcess, 0
+	quit: 
+
 main ENDP
 
-Process_AND PROC
+ChooseProcedure PROC USES ebx ecx
+		mov ebx, OFFSET caseTable	; pointer to the table
+		mov ecx, NumberOfEntries	; loop counter
+
+	L1:	
+		cmp al, [ebx]			    ; match found?
+		jne L2				        ; if no, continue
+		call NEAR PTR [ebx + 1]		; if yes, call procedure
+		jmp quit
+
+	L2:	
+		add ebx, EntrySize	    ; point to the next entry
+		loop L1				    ; repeat until ECX = 0
+	quit:
+
+	ret					        ; return from procedure
+
+ChooseProcedure ENDP
+
+AND_op PROC
+	pushad				    ; push all registers onto stack
+	mov eax, x			
+	mov ebx, y
+	and eax, ebx			; x AND y
+	popad					; save and restore registers
+	ret					    ; return from procedure
+AND_op ENDP
+
+OR_op PROC
+	pushad					; push all registers onto stack
+	mov eax, x			
+	mov ebx, y
+	or eax, ebx				; x OR y
+	popad					; save and restore registers
+	ret						; return from procedure
+OR_op ENDP
+
+NOT_op PROC
+	pushad					; push all registers onto stack
 	mov eax, x
-	mov edx, y
-	AND eax, edx
-	ret
-Process_AND ENDP
+	not eax					; NOT operand
+	popad					; restore registers
+	ret						; return from procedure
+NOT_op ENDP
 
-Process_OR PROC
+XOR_op PROC
+	pushad					; push all registers onto stack
 	mov eax, x
-	mov edx, y
-	OR eax, edx
-	ret
-Process_OR ENDP
+	mov ebx, y
+	xor eax, ebx			; x XOR y
+	popad					; save and restore registers
+	ret						; return from procedure
 
-Process_NOT PROC
-	mov eax, x
-	NOT eax
-	ret
-Process_NOT ENDP
+XOR_op ENDP
 
-Process_XOR PROC
-	mov eax, x
-	mov edx, y
-	XOR eax, edx
-	ret
-Process_XOR ENDP
+ExitProgram PROC
 
+	stc					; set the carry flag to 1
+	ret					; return from procedure
 
+ExitProgram ENDP
 
 END main
