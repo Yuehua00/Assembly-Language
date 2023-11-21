@@ -31,7 +31,7 @@ main ENDP
 
 ;------------------------------------------;
 ; TranslateBuffer                          ;
-;
+; XOR two charactor                        ;
 ;------------------------------------------;
 
 TranslateBuffer PROC
