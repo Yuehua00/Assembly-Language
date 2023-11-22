@@ -10,6 +10,7 @@
 ;                       So, this suggests the use of a loop. But be careful, since some machine instructions affect the Parity flag, and others do not. 
 ;                       You can find this out by looking at the individual instructions in Appendix B. 
 ;                       The code in your loop that checks the parity will have to carefully save and restore the state of the Parity flag to avoid having it unintentionally modified by your code.
+; Reference Website : https://blog.csdn.net/fangongdalu7148/article/details/86482000
 ; Author : Slider
 ; Creation Date : 2023/11/21
 ; Revisions :
