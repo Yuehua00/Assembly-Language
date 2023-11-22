@@ -8,6 +8,7 @@
 ;                           1001234567.89765
 ;                       When calling WriteScaled, pass the number’s offset in EDX, the number length in ECX, and the decimal offset in EBX. 
 ;                       Write a test program that passes three numbers of different sizes to the WriteScaled procedure.
+; Reference Website : https://handhikayp.medium.com/display-ascii-decimal-assembly-programming-solution-730a5214a781
 ; Author : Slider
 ; Creation Date : 2023/11/21
 ; Revisions :
