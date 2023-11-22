@@ -65,18 +65,18 @@ END main
 ;	sub ecx,ebx
 ;	mov ebx,ecx
 ;	pop ecx
-;	mov esi,0                ; count 
+;	mov esi,0                    ; count 
 ;	L1:
 ;		cmp esi, ebx         ; 已經達到所需小數位數
-;       je writedot
+;       	je writedot
 ;		mov al,[edx]
 ;		                     ; write
 ;		inc esi
-;       jmp next
-;   writedot:
+;       	jmp next
+;       writedot:
 ;		mov al, 2Eh          ; "." ASKII
-;                            ; write
-;   next:
+;                            	     ; write
+;       next:
 ;		add edx, TYPE BYTE
 ;
 ;	loop L1
