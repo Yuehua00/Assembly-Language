@@ -1,4 +1,4 @@
-; Boolean Calculator (1)  (6-5.asm)
+; Parity Checking  (6-10.asm)
 ; Program Description : Data transmission systems and file subsystems often use a form of error detection that relies on calculating the parity (even or odd) of blocks of data. 
 ;                       Your task is to create a procedure that returns True in the EAX register if the bytes in an array contain even parity, or False if the parity is odd. 
 ;                       In other words, if you count all the bits in the entire array, their count will be even or odd. Preserve all other register values between calls to the procedure. 
